@@ -143,6 +143,8 @@ class ProjectGenerator {
 
 		generateGitIgnore(dir, request)
 
+
+
 		def applicationName = request.applicationName
 		def language = request.language
 
@@ -165,6 +167,33 @@ class ProjectGenerator {
 		def resources = new File(dir, 'src/main/resources')
 		resources.mkdirs()
 		new File(resources, 'application.properties').write('')
+		//MOD
+		write(new File(dir, 'src/main/resources/bootstrap.properties'), 'bootstrap.properties', model);
+
+
+		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/domain/").mkdirs()
+		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/api/v1/").mkdirs()
+		write(new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/domain/Product.java"), 'Product.java', model);
+		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
+
+
+		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/integration/").mkdirs()
+
+		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/repository/").mkdirs()
+		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/service/").mkdirs()
+		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/service/ProductService.java"), 'ProductService.java', model);
+		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/service/ProductServiceImpl.java"), 'ProductServiceImpl.java', model);
+
+
+		if (request.hasFacet('mybatis')) {
+
+			write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/repository/ProductMapper.java"), 'ProductMapper.java', model);
+		}
+
+
+		writeTextResource(dir, 'checkstyle-aucnet.xml' , 'checkstyle-aucnet.xml')
+		writeTextResource(dir, 'formatter-aucnet.xml' , 'formatter-aucnet.xml')
+
 
 		if (request.hasWebFacet()) {
 			new File(dir, 'src/main/resources/templates').mkdirs()
@@ -286,6 +315,11 @@ class ProjectGenerator {
 
 		// Append the project request to the model
 		request.properties.each { model[it.key] = it.value }
+
+
+
+		//MOD
+		model['hasMybatis'] = request.hasFacet('mybatis')
 
 		model
 	}

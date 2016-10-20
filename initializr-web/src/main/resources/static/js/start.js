@@ -162,6 +162,7 @@ $(function () {
     });
     $("#artifactId").on('change', function () {
         $("#baseDir").attr('value', this.value)
+        $("#packageName").val($("#groupId").val()+"."+this.value);
     });
     $("#bootVersion").on("change", function (e) {
         refreshDependencies(this.value);
@@ -266,5 +267,26 @@ $(function () {
             applyParams();
         }
     }
+
+    $("#archetypes").on("change", function (e) {
+        // this could be a little smarter...
+        $("#starters div").remove();
+        $("#dependencies input").prop('checked', false);
+        var results = [];
+        switch ($(this).find(":selected").val()) {
+        case "REST":
+            results = starters.get(['web','actuator',
+                                    'cloud-config-client', 'cloud-starter-sleuth','cloud-starter-zipkin',
+                                    'cloud-eureka','cloud-hystrix', 'mybatis-starter','mysql','dozer','jsr354']);
+            break;
+        case "BATCH":
+            results = starters.get([]);
+            break;
+        }
+        for (var i = 0; i < results.length; i++) {
+            addTag(results[i].id, results[i].name);
+            $("#dependencies input[value='" + results[i].id + "']").prop('checked', true);
+        }
+    });
 
 });
