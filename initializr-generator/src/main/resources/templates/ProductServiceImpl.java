@@ -1,7 +1,7 @@
-package ${packageName}.business.service;
+package ${packageName}.${artifactId}.business.service;
 
-import jp.co.aucnet.business.domain.Product;
-import jp.co.aucnet.business.repository.ProductMapper;
+import ${packageName}.${artifactId}.business.domain.Product;
+import ${packageName}.${artifactId}.business.repository.ProductMapper;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

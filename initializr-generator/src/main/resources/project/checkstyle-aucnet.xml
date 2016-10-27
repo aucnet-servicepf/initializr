@@ -29,6 +29,7 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
     <module name="LineLength">
       <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
       <property name="max" value="100"/>
+      <property name="tabWidth" value="4"/>
     </module>
     <module name="AvoidStarImport"/>
     <module name="OneTopLevelClass"/>
@@ -124,9 +125,11 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="CustomImportOrder">
+      <property name="severity" value="ignore"/>
       <property name="customImportOrderRules" value="STATIC###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE"/>
       <property name="specialImportsRegExp" value="com.google"/>
       <property name="sortImportsInGroupAlphabetically" value="true"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="MethodParamPad"/>
     <module name="OperatorWrap">
@@ -175,6 +178,7 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
     <module name="LeftCurly">
       <property name="maxLineLength" value="120"/>
     </module>
+    <module name="ParameterNumber"/>
   </module>
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>

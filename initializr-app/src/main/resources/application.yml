@@ -730,6 +730,21 @@ initializr:
           version: 1.1
           groupId: org.javamoney
           artifactId: moneta 
+        - name: springtestdbunit
+          id: springtestdbunit
+          description: Integration between the Spring testing framework and DBUnit 
+          version: 1.3.0
+          groupId: com.github.springtestdbunit
+          artifactId: spring-test-dbunit 
+          scope: test
+        - name: dbunit
+          id: dbunit
+          description: dbUnit is a JUnit extension (also usable from Ant and Maven) targeted for database-driven projects 
+          version: 2.5.3
+          groupId: org.dbunit
+          artifactId: dbunit
+          scope: test
+          
           
   types:
     - name: Maven Project

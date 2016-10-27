@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageName}.${artifactId};
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -277,7 +277,8 @@ $(function () {
         case "REST":
             results = starters.get(['web','actuator',
                                     'cloud-config-client', 'cloud-starter-sleuth','cloud-starter-zipkin',
-                                    'cloud-eureka','cloud-hystrix', 'mybatis-starter','mysql','dozer','jsr354']);
+                                    'cloud-eureka','cloud-hystrix', 'mybatis-starter','mysql','dozer','jsr354',
+                                    'springtestdbunit','dbunit']);
             break;
         case "BATCH":
             results = starters.get([]);

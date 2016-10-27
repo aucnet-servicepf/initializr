@@ -143,13 +143,13 @@ class ProjectGenerator {
 
 		generateGitIgnore(dir, request)
 
-
+        def packageWithPjName = request.packageName.replace('.', '/') + "/" + request.artifactId
 
 		def applicationName = request.applicationName
 		def language = request.language
 
 		String codeLocation = language
-		def src = new File(new File(dir, "src/main/$codeLocation"), request.packageName.replace('.', '/'))
+		def src = new File(new File(dir, "src/main/$codeLocation"), packageWithPjName)
 		src.mkdirs()
 		def extension = (language.equals('kotlin') ? 'kt' : language)
 		write(new File(src, "${applicationName}.${extension}"), "Application.$extension", model)
@@ -159,7 +159,7 @@ class ProjectGenerator {
 			write(new File(src, fileName), fileName, model)
 		}
 
-		def test = new File(new File(dir, "src/test/$codeLocation"), request.packageName.replace('.', '/'))
+		def test = new File(new File(dir, "src/test/$codeLocation"), packageWithPjName)
 		test.mkdirs()
 		setupTestModel(request, model)
 		write(new File(test, "${applicationName}Tests.${extension}"), "ApplicationTests.$extension", model)
@@ -171,23 +171,40 @@ class ProjectGenerator {
 		write(new File(dir, 'src/main/resources/bootstrap.properties'), 'bootstrap.properties', model);
 
 
-		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/domain/").mkdirs()
-		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/api/v1/").mkdirs()
-		write(new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/domain/Product.java"), 'Product.java', model);
-		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
 
 
-		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/integration/").mkdirs()
 
-		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/repository/").mkdirs()
-		new File(dir, 'src/main/java/' + request.packageName.replace('.', '/') + "/business/service/").mkdirs()
-		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/service/ProductService.java"), 'ProductService.java', model);
-		write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/service/ProductServiceImpl.java"), 'ProductServiceImpl.java', model);
+		new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/").mkdirs()
+		new File(dir, 'src/main/java/' + packageWithPjName + "/api/v1/").mkdirs()
+		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
+		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
+
+
+		new File(dir, 'src/main/java/' + packageWithPjName + "/integration/").mkdirs()
+
+		new File(dir, 'src/main/java/' + packageWithPjName + "/business/repository/").mkdirs()
+		new File(dir, 'src/main/java/' + packageWithPjName + "/business/service/").mkdirs()
+
+        new File(dir, 'src/test/resources/' + packageWithPjName + "/business/service/").mkdirs()
+        new File(dir, 'src/test/java/' + packageWithPjName + "/business/service/").mkdirs()
+
+
+		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/service/ProductService.java"), 'ProductService.java', model);
+		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/service/ProductServiceImpl.java"), 'ProductServiceImpl.java', model);
+        write(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/products.yml"), 'products.yml', model);
+        write(new File(dir, 'src/test/java/'+ packageWithPjName + "/business/service/ProductServiceTests.java"), 'ProductServiceTests.java', model);
+
+
+
+        //TODO 共通LIBに移動する予定
+        new File(dir, 'src/test/java/jp/co/aucnet/test/util/').mkdirs()
+        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSetLoader.java'), 'YamlDataSetLoader.java', model);
+        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSet.java'), 'YamlDataSet.java', model);
 
 
 		if (request.hasFacet('mybatis')) {
 
-			write(new File(dir, 'src/main/java/'+ request.packageName.replace('.', '/') + "/business/repository/ProductMapper.java"), 'ProductMapper.java', model);
+			write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.java"), 'ProductMapper.java', model);
 		}
 
 

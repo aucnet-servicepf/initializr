@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageName}.${artifactId};
 
 import org.springframework.boot.SpringApplication;<% if (useSpringBootApplication) { %>
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;<%} else
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import jp.co.aucnet.ProjectApplication;<% } %>
+<% } %>
 <% if (useSpringBootApplication) { %>
 @SpringBootApplication
 @EnableCircuitBreaker

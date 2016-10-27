@@ -1,4 +1,4 @@
-package ${packageName}.business.domain;
+package ${packageName}.${artifactId}.business.domain;
 
 import java.io.Serializable;
 

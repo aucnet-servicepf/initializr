@@ -1,0 +1,8 @@
+product:
+  - id: 1
+    name: name1
+    price: 100
+  - id: 2
+    name: name2
+    price: 300
+    

@@ -1,6 +1,6 @@
-package ${packageName}.business.service;
+package ${packageName}.${artifactId}.business.service;
 
-import jp.co.aucnet.business.domain.Product;
+import ${packageName}.${artifactId}.business.domain.Product;
 
 public interface ProductService {
 
