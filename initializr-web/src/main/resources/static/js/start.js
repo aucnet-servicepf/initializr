@@ -268,17 +268,21 @@ $(function () {
         }
     }
 
-    $("#archetypes").on("change", function (e) {
+    $("#artifactId").trigger("change");
+
+
+    archetypesChange = function () {
+
         // this could be a little smarter...
         $("#starters div").remove();
         $("#dependencies input").prop('checked', false);
         var results = [];
-        switch ($(this).find(":selected").val()) {
+        switch ($(this).val()) {
         case "REST":
             results = starters.get(['web','actuator',
                                     'cloud-config-client', 'cloud-starter-sleuth','cloud-starter-zipkin',
                                     'cloud-eureka','cloud-hystrix', 'mybatis-starter','mysql','dozer','jsr354',
-                                    'springtestdbunit','dbunit']);
+                                    'springtestdbunit','dbunit','cloud-connectors','spring-cloud-sso-connector']);
             break;
         case "BATCH":
             results = starters.get([]);
@@ -288,6 +292,13 @@ $(function () {
             addTag(results[i].id, results[i].name);
             $("#dependencies input[value='" + results[i].id + "']").prop('checked', true);
         }
-    });
+    }
+
+    $("#archetypes").change(archetypesChange);
+
+    setTimeout(function(){
+    	  $("#archetypes").val("REST").change();
+    }, 500);
+
 
 });

@@ -1,4 +1,4 @@
-package ${packageName}.${artifactId};
+package ${packageName};
 
 import org.springframework.boot.builder.SpringApplicationBuilder;<% if (newServletInitializer) { %>
 import org.springframework.boot.web.support.SpringBootServletInitializer;<% } else { %>

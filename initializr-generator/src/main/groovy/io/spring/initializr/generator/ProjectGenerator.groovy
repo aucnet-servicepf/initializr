@@ -143,7 +143,7 @@ class ProjectGenerator {
 
 		generateGitIgnore(dir, request)
 
-        def packageWithPjName = request.packageName.replace('.', '/') + "/" + request.artifactId
+        def packageWithPjName = request.packageName.replace('.', '/')
 
 		def applicationName = request.applicationName
 		def language = request.language
@@ -180,7 +180,8 @@ class ProjectGenerator {
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
 
 
-		new File(dir, 'src/main/java/' + packageWithPjName + "/integration/").mkdirs()
+        //repository複雑化のもの
+		new File(dir, 'src/main/java/' + packageWithPjName + "/integration/repository").mkdirs()
 
 		new File(dir, 'src/main/java/' + packageWithPjName + "/business/repository/").mkdirs()
 		new File(dir, 'src/main/java/' + packageWithPjName + "/business/service/").mkdirs()
@@ -194,6 +195,9 @@ class ProjectGenerator {
         write(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/products.yml"), 'products.yml', model);
         write(new File(dir, 'src/test/java/'+ packageWithPjName + "/business/service/ProductServiceTests.java"), 'ProductServiceTests.java', model);
 
+
+
+        write(new File(dir, "manifest.yml"), 'manifest.yml', model);
 
 
         //TODO 共通LIBに移動する予定

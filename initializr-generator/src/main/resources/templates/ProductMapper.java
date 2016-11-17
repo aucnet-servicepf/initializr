@@ -1,6 +1,6 @@
-package ${packageName}.${artifactId}.business.repository;
+package ${packageName}.business.repository;
 
-import ${packageName}.${artifactId}.business.domain.Product;
+import ${packageName}.business.domain.Product;
 
 
 import org.apache.ibatis.annotations.Mapper;

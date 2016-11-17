@@ -1,7 +1,7 @@
-package ${packageName}.${artifactId}.business.service;
+package ${packageName}.business.service;
 
-import ${packageName}.${artifactId}.business.domain.Product;
-import ${packageName}.${artifactId}.business.repository.ProductMapper;
+import ${packageName}.business.domain.Product;
+import ${packageName}.business.repository.ProductMapper;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

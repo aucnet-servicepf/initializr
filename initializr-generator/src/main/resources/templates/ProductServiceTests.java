@@ -1,4 +1,4 @@
-package ${packageName}.${artifactId}.business.service;
+package ${packageName}.business.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -18,8 +18,8 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 
-import ${packageName}.${artifactId}.business.domain.Product;
-import ${packageName}.${artifactId}.business.service.ProductService;
+import ${packageName}.business.domain.Product;
+import ${packageName}.business.service.ProductService;
 import jp.co.aucnet.test.util.YamlDataSetLoader;
 
 

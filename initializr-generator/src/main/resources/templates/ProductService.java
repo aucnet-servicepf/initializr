@@ -1,6 +1,6 @@
-package ${packageName}.${artifactId}.business.service;
+package ${packageName}.business.service;
 
-import ${packageName}.${artifactId}.business.domain.Product;
+import ${packageName}.business.domain.Product;
 
 public interface ProductService {
 

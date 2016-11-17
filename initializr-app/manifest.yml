@@ -1,0 +1,10 @@
+---
+applications:
+ - name: blankProject
+   memory: 1G
+   instances: 1
+   path: target/initializr-app.jar
+   env:
+     SKIP_SSL_VALIDATION: "true"
+     GRANT_TYPE: authorization_code
+ #    SSO_IDENTITY_PROVIDERS: uaa
