@@ -5,20 +5,26 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-//import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 /**
  */
 @SpringBootApplication
-//@EnableOAuth2Sso
+
 public class InitializrApp {
 
+    @EnableOAuth2Sso
+    @Configuration
+    @Profile("cloud")
+    static class SSO {
+
+    }
+
   public static void main(String[] args) {
-//      if ("true".equals(System.getenv("SKIP_SSL_VALIDATION"))) {
-//          SSLValidationDisabler.disableSSLValidation();
-//      }
+
       SSLValidationDisabler.disableSSLValidation();
       ApplicationContext ctx = SpringApplication.run(InitializrApp.class, args);
   }

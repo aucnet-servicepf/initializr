@@ -10,3 +10,5 @@ applications:
      TRUST_CERTS: api.system.staging.pcf.tagbangers.biz
    domain: apps.staging.pcf.tagbangers.biz
  #    SSO_IDENTITY_PROVIDERS: uaa
+   services:
+    - auth
