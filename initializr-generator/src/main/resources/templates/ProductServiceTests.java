@@ -19,8 +19,7 @@ import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 
 import ${packageName}.business.domain.Product;
-import ${packageName}.business.service.ProductService;
-import jp.co.aucnet.test.util.YamlDataSetLoader;
+import jp.co.aucnet.test.util.ExcelDataSetLoader;
 
 
 @RunWith(SpringRunner.class)
@@ -32,19 +31,19 @@ import jp.co.aucnet.test.util.YamlDataSetLoader;
     TransactionalTestExecutionListener.class,
     DbUnitTestExecutionListener.class })
 
-@DbUnitConfiguration(dataSetLoader = YamlDataSetLoader.class)
+@DbUnitConfiguration(dataSetLoader = ExcelDataSetLoader.class)
 public class ProductServiceTests {
 
     @Autowired
     ProductService productService;
 
     @Test
-    @DatabaseSetup("products.yml")
-    @DatabaseTearDown("products.yml")
+    @DatabaseSetup("products.xlsx")
+    @DatabaseTearDown("products.xlsx")
     public void testData() {
-        Product product = productService.findProductByName("name1");
+        Product product = productService.findProductByName("Dell");
 
-        assertThat(product.getName(), is("name1"));
+        assertThat(product.getName(), is("Dell"));
 
     }
 

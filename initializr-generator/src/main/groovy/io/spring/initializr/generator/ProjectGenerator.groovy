@@ -206,8 +206,15 @@ class ProjectGenerator {
 
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/service/ProductService.java"), 'ProductService.java', model);
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/service/ProductServiceImpl.java"), 'ProductServiceImpl.java', model);
-        write(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/products.yml"), 'products.yml', model);
+
+
+
         write(new File(dir, 'src/test/java/'+ packageWithPjName + "/business/service/ProductServiceTests.java"), 'ProductServiceTests.java', model);
+
+
+
+        writeBinaryResource(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/"), 'products.xlsx' , 'products.xlsx')
+
 
 
         //CI用
@@ -217,8 +224,14 @@ class ProjectGenerator {
 
         //TODO 共通LIBに移動する予定
         new File(dir, 'src/test/java/jp/co/aucnet/test/util/').mkdirs()
-        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSetLoader.java'), 'YamlDataSetLoader.java', model);
-        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSet.java'), 'YamlDataSet.java', model);
+//        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSetLoader.java'), 'YamlDataSetLoader.java', model);
+//        write(new File(dir, 'src/test/java/jp/co/aucnet/test/util/YamlDataSet.java'), 'YamlDataSet.java', model);
+
+        writeBinaryResource(new File(dir, 'src/test/java/jp/co/aucnet/test/util/'), 'ExcelDataSetLoader.java' , 'ExcelDataSetLoader.java')
+
+        writeBinaryResource(new File(dir, 'src/test/java/jp/co/aucnet/test/util/'), 'XlsxDataSet.java' , 'XlsxDataSet.java')
+        writeBinaryResource(new File(dir, 'src/test/java/jp/co/aucnet/test/util/'), 'XlsxDataSetWriter.java' , 'XlsxDataSetWriter.java')
+
 
 
 		if (request.hasFacet('mybatis')) {
