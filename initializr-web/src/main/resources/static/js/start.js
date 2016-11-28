@@ -280,9 +280,11 @@ $(function () {
         switch ($(this).val()) {
         case "REST":
             results = starters.get(['web','actuator',
-                                    'cloud-config-client', 'cloud-starter-sleuth','cloud-starter-zipkin',
-                                    'cloud-eureka','cloud-hystrix', 'mybatis-starter','mysql','dozer','jsr354',
-                                    'springtestdbunit','dbunit','cloud-connectors','spring-cloud-sso-connector']);
+                                    'scs-config-client', 'scs-service-registry','scs-circuit-breaker',
+                                    'spring-cloud-sso-connector','spring-cloud-services-cloudfoundry-connector','spring-cloud-services-spring-connector',
+                                    'cloud-starter-sleuth','cloud-starter-zipkin','mybatis-starter','mysql','dozer','jsr354',
+                                    'springtestdbunit','dbunit',
+                                    'flywaydb']);
             break;
         case "BATCH":
             results = starters.get([]);

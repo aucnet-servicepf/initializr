@@ -171,13 +171,27 @@ class ProjectGenerator {
 		write(new File(dir, 'src/main/resources/bootstrap.properties'), 'bootstrap.properties', model);
 
 
-
+        //sample data
+        new File(dir, 'src/main/resources/db/migration/').mkdirs()
+        writeBinaryResource(new File(dir, 'src/main/resources/db/migration/'), 'V1__Create_Table_With_Seed.sql' , 'V1__Create_Table_With_Seed.sql')
 
 
 		new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/").mkdirs()
 		new File(dir, 'src/main/java/' + packageWithPjName + "/api/v1/").mkdirs()
 		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
+
+
+
+        //
+        new File(dir, 'src/main/java/' + packageWithPjName + "/config").mkdirs()
+        write(new File(dir, 'src/main/java/'+ packageWithPjName + "/config/Config.java"), 'Config.java', model);
+
+        //TODO 一時的用な物 self-signSSL問題対応
+        new File(dir, 'src/main/java/org/apache/http/conn/ssl/').mkdirs()
+        writeTextResource(new File(dir, 'src/main/java/org/apache/http/conn/ssl/'), 'AbstractVerifier.java' , 'AbstractVerifier.java')
+
+        write(new File(dir, 'src/main/java/'+packageWithPjName+"/SSLValidationDisabler.java"), 'SSLValidationDisabler.java', model);
 
 
         //repository複雑化のもの
@@ -196,7 +210,8 @@ class ProjectGenerator {
         write(new File(dir, 'src/test/java/'+ packageWithPjName + "/business/service/ProductServiceTests.java"), 'ProductServiceTests.java', model);
 
 
-
+        //CI用
+        new File(dir, 'ci').mkdirs()
         write(new File(dir, "manifest.yml"), 'manifest.yml', model);
 
 
@@ -214,6 +229,9 @@ class ProjectGenerator {
 
 		writeTextResource(dir, 'checkstyle-aucnet.xml' , 'checkstyle-aucnet.xml')
 		writeTextResource(dir, 'formatter-aucnet.xml' , 'formatter-aucnet.xml')
+
+
+
 
 
 		if (request.hasWebFacet()) {

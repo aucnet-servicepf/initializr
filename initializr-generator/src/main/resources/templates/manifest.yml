@@ -1,12 +1,18 @@
 ---
 applications:
- - name: blankProject
+ - name: ${artifactId}
    memory: 1G
    instances: 1
-   path: target/initializr-app.jar
+   path: target/${artifactId}-0.0.1-SNAPSHOT.jar
    env:
      SKIP_SSL_VALIDATION: "true"
      GRANT_TYPE: authorization_code
      TRUST_CERTS: api.system.staging.pcf.tagbangers.biz
-   domain: apps.staging.pcf.tagbangers.biz
  #    SSO_IDENTITY_PROVIDERS: uaa
+   domain: apps.staging.pcf.tagbangers.biz
+   services:
+    - auth
+    - config-server
+    - service-registry
+    - cb-server
+    - mysql-dev
