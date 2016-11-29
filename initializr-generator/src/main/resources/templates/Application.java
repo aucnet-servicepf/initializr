@@ -26,9 +26,6 @@ public class ${applicationName} {
 
     public static void main(String[] args) {
         logger.info("app start");
-        if ("true".equals(System.getenv("SKIP_SSL_VALIDATION"))) {
-            SSLValidationDisabler.disableSSLValidation();
-        }
 
         SpringApplication.run(${applicationName}.class, args);
     }

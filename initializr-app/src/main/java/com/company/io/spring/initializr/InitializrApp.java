@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 /**
  */
 @SpringBootApplication
-
 public class InitializrApp {
 
     @EnableOAuth2Sso

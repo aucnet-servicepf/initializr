@@ -188,10 +188,10 @@ class ProjectGenerator {
         write(new File(dir, 'src/main/java/'+ packageWithPjName + "/config/Config.java"), 'Config.java', model);
 
         //TODO 一時的用な物 self-signSSL問題対応
-        new File(dir, 'src/main/java/org/apache/http/conn/ssl/').mkdirs()
-        writeTextResource(new File(dir, 'src/main/java/org/apache/http/conn/ssl/'), 'AbstractVerifier.java' , 'AbstractVerifier.java')
+       // new File(dir, 'src/main/java/org/apache/http/conn/ssl/').mkdirs()
+       // writeTextResource(new File(dir, 'src/main/java/org/apache/http/conn/ssl/'), 'AbstractVerifier.java' , 'AbstractVerifier.java')
 
-        write(new File(dir, 'src/main/java/'+packageWithPjName+"/SSLValidationDisabler.java"), 'SSLValidationDisabler.java', model);
+       // write(new File(dir, 'src/main/java/'+packageWithPjName+"/SSLValidationDisabler.java"), 'SSLValidationDisabler.java', model);
 
 
         //repository複雑化のもの

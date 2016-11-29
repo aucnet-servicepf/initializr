@@ -5,11 +5,9 @@ applications:
    instances: 1
    path: target/${artifactId}-0.0.1-SNAPSHOT.jar
    env:
-     SKIP_SSL_VALIDATION: "true"
      GRANT_TYPE: authorization_code
      TRUST_CERTS: api.system.staging.pcf.tagbangers.biz
  #    SSO_IDENTITY_PROVIDERS: uaa
-   domain: apps.staging.pcf.tagbangers.biz
    services:
     - auth
     - config-server
