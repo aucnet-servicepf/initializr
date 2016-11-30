@@ -282,7 +282,8 @@ $(function () {
             results = starters.get(['web','actuator',
                                     'scs-config-client', 'scs-service-registry','scs-circuit-breaker',
                                     'spring-cloud-sso-connector','spring-cloud-services-cloudfoundry-connector','spring-cloud-services-spring-connector',
-                                    'cloud-starter-sleuth','cloud-starter-zipkin','mybatis-starter','mysql','dozer','jsr354',
+                                    'cloud-sleuth-stream','cloud-starter-sleuth','cloud-stream-binder-rabbit',
+                                    'mybatis-starter','mysql','dozer','jsr354',
                                     'springtestdbunit','dbunit',
                                     'flywaydb']);
             break;

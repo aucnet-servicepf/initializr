@@ -14,3 +14,4 @@ applications:
     - service-registry
     - cb-server
     - mysql-dev
+    - zipkin-rabbitmq

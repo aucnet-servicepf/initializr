@@ -180,7 +180,7 @@ class ProjectGenerator {
 		new File(dir, 'src/main/java/' + packageWithPjName + "/api/v1/").mkdirs()
 		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
-
+        write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductServiceV1.java"), 'ProductServiceV1.java', model);
 
 
         //
@@ -192,6 +192,9 @@ class ProjectGenerator {
        // writeTextResource(new File(dir, 'src/main/java/org/apache/http/conn/ssl/'), 'AbstractVerifier.java' , 'AbstractVerifier.java')
 
        // write(new File(dir, 'src/main/java/'+packageWithPjName+"/SSLValidationDisabler.java"), 'SSLValidationDisabler.java', model);
+
+        new File(dir, 'src/main/java/org/springframework/security/concurrent/').mkdirs()
+        write(new File(dir, 'src/main/java/org/springframework/security/concurrent/DelegatingSecurityContextCallable.java'), 'DelegatingSecurityContextCallable.java', model);
 
 
         //repository複雑化のもの
