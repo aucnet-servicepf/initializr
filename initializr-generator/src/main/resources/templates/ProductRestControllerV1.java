@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/v1/products")
-public class ProductControllerV1 {
+public class ProductRestControllerV1 {
 
     @Autowired
     ProductService productService;
@@ -21,10 +21,16 @@ public class ProductControllerV1 {
     @Autowired
     private ProductServiceV1 productServiceV1;
 
-    @GetMapping(value = "/{name}")
+    @GetMapping(value = "/name/{name}")
     public Product findProductByName(@PathVariable String name) {
         return productService.findProductByName(name);
     }
+
+    @GetMapping(value = "/{id}")
+    public Product findProductById(@PathVariable int id) {
+        return productService.findById(id);
+    }
+
 
     @GetMapping(value = "/random/{ret}")
     public String random(@PathVariable String ret) {

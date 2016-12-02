@@ -1,0 +1,13 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: aucnet4dev/springboot
+    tag: latest
+
+inputs:
+  - name: source
+
+run:
+  path: "source/ci/scripts/unittest.sh"

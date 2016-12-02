@@ -19,6 +19,12 @@ public class ProductServiceImpl implements ProductService {
     public Product findProductByName(String name) {
         return productMapper.findByName(name);
     }
+
+    @Override
+    public Product findById(int id) {
+        return productMapper.findById(id);
+    }
+
 <% } else {%>
     @Override
     public Product findProductByName(String name) {

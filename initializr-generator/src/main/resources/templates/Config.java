@@ -1,6 +1,6 @@
 package ${packageName}.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

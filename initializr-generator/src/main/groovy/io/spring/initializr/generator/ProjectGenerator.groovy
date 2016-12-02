@@ -166,7 +166,10 @@ class ProjectGenerator {
 
 		def resources = new File(dir, 'src/main/resources')
 		resources.mkdirs()
-		new File(resources, 'application.properties').write('')
+		//new File(resources, 'application.properties').write('')
+
+        write(new File(dir, 'src/main/resources/application.properties'), 'application.properties', model);
+
 		//MOD
 		write(new File(dir, 'src/main/resources/bootstrap.properties'), 'bootstrap.properties', model);
 
@@ -179,7 +182,7 @@ class ProjectGenerator {
 		new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/").mkdirs()
 		new File(dir, 'src/main/java/' + packageWithPjName + "/api/v1/").mkdirs()
 		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
-		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductControllerV1.java"), 'ProductControllerV1.java', model);
+		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductRestControllerV1.java"), 'ProductRestControllerV1.java', model);
         write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductServiceV1.java"), 'ProductServiceV1.java', model);
 
 
@@ -219,9 +222,14 @@ class ProjectGenerator {
         writeBinaryResource(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/"), 'products.xlsx' , 'products.xlsx')
 
 
-
         //CI用
-        new File(dir, 'ci').mkdirs()
+        new File(dir, 'ci/scripts').mkdirs()
+        write(new File(dir, "ci/unittest.yml"), 'unittest.yml', model);
+        write(new File(dir, "ci/package.yml"), 'package.yml', model);
+
+        write(new File(dir, "ci/scripts/unittest.sh"), 'unittest.sh', model);
+        write(new File(dir, "ci/scripts/package.sh"), 'package.sh', model);
+
         write(new File(dir, "manifest.yml"), 'manifest.yml', model);
 
 
@@ -240,13 +248,16 @@ class ProjectGenerator {
 		if (request.hasFacet('mybatis')) {
 
 			write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.java"), 'ProductMapper.java', model);
-		}
+
+            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.xml"), 'ProductMapper.xml', model);
+
+            write(new File(dir, 'src/main/resources/mybatis-config.xml'), 'mybatis-config.xml', model);
+
+         }
 
 
 		writeTextResource(dir, 'checkstyle-aucnet.xml' , 'checkstyle-aucnet.xml')
 		writeTextResource(dir, 'formatter-aucnet.xml' , 'formatter-aucnet.xml')
-
-
 
 
 
