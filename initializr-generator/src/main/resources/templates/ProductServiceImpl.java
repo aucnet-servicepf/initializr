@@ -1,6 +1,7 @@
 package ${packageName}.business.service;
 
 import ${packageName}.business.domain.Product;
+import ${packageName}.business.domain.ProductExample;
 import ${packageName}.business.repository.ProductMapper;
 
 
@@ -17,12 +18,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findProductByName(String name) {
-        return productMapper.findByName(name);
+        ProductExample condition = new ProductExample();
+        condition.createCriteria().andNameEqualTo(name);
+
+        return productMapper.selectByExample(condition).stream().findFirst().orElse(null);
     }
 
     @Override
     public Product findById(int id) {
-        return productMapper.findById(id);
+        return productMapper.selectByPrimaryKey(id);
     }
 
 <% } else {%>

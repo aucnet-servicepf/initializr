@@ -129,6 +129,14 @@ class ProjectGenerator {
 		rootDir.delete()
 		rootDir.mkdirs()
 
+
+        if (request.hasFacet('mybatis')) {
+            request.buildProperties.maven['mybatis.generator.overwrite']={"true"}
+            request.buildProperties.maven['mybatis.generator.configurationFile']={'mybatis-generator-config.xml'}
+
+         }
+
+
 		def dir = initializerProjectDir(rootDir, request)
 
 		if (isGradleBuild(request)) {
@@ -252,6 +260,14 @@ class ProjectGenerator {
             write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.xml"), 'ProductMapper.xml', model);
 
             write(new File(dir, 'src/main/resources/mybatis-config.xml'), 'mybatis-config.xml', model);
+
+            write(new File(dir, 'mybatis-generator-config.xml'), 'mybatis-generator-config.xml', model);
+
+            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/domain/AbstractBaseEntity.java"), 'AbstractBaseEntity.java', model);
+
+
+            write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/ProductExample.java"), 'ProductExample.java', model);
+
 
          }
 

@@ -1,5 +1,6 @@
 package ${packageName};
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,8 @@ import jp.co.aucnet.project.SSLValidationDisabler;
 <% if (useSpringBootApplication) { %>
 @SpringBootApplication
 @EnableCircuitBreaker
-@EnableDiscoveryClient<% } else { %>
+@EnableDiscoveryClient
+@MapperScan(basePackages="${packageName}.business.repository")<% } else { %>
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration <% } %>
