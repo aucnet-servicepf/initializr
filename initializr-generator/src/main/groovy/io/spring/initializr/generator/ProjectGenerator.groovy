@@ -20,7 +20,6 @@ import groovy.util.logging.Slf4j
 import io.spring.initializr.InitializrException
 import io.spring.initializr.metadata.Dependency
 import io.spring.initializr.metadata.InitializrMetadataProvider
-import io.spring.initializr.util.Agent
 import io.spring.initializr.util.GroovyTemplate
 import io.spring.initializr.util.Version
 
@@ -49,6 +48,8 @@ class ProjectGenerator {
 	private static final VERSION_1_4_0_M2 = Version.parse('1.4.0.M2')
 
 	private static final VERSION_1_4_0_M3 = Version.parse('1.4.0.M3')
+
+	private static final VERSION_1_4_2_M1 = Version.parse('1.4.2.M1')
 
 	@Autowired
 	ApplicationEventPublisher eventPublisher
@@ -368,6 +369,7 @@ class ProjectGenerator {
 
 		model['compileDependencies'] = filterDependencies(dependencies, Dependency.SCOPE_COMPILE)
 		model['runtimeDependencies'] = filterDependencies(dependencies, Dependency.SCOPE_RUNTIME)
+		model['compileOnlyDependencies'] = filterDependencies(dependencies, Dependency.SCOPE_COMPILE_ONLY)
 		model['providedDependencies'] = filterDependencies(dependencies, Dependency.SCOPE_PROVIDED)
 		model['testDependencies'] = filterDependencies(dependencies, Dependency.SCOPE_TEST)
 
@@ -388,6 +390,10 @@ class ProjectGenerator {
 		// Gradle plugin has changed as from 1.3.0
 		model['bootOneThreeAvailable'] = VERSION_1_3_0_M1
 				.compareTo(Version.safeParse(request.bootVersion)) <= 0
+
+		// Gradle plugin has changed again as from 1.4.2
+		model['springBootPluginName'] = (VERSION_1_4_2_M1.compareTo(
+				Version.safeParse(request.bootVersion)) <= 0 ? 'org.springframework.boot' : 'spring-boot')
 
 		// New testing stuff
 		model['newTestInfrastructure'] = isNewTestInfrastructureAvailable(request)

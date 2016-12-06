@@ -34,22 +34,20 @@ import org.springframework.boot.actuate.metrics.repository.redis.RedisMetricRepo
 import org.springframework.boot.actuate.metrics.writer.MetricWriter
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.boot.test.IntegrationTest
-import org.springframework.boot.test.SpringApplicationConfiguration
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Bean
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+import org.springframework.test.context.junit4.SpringRunner
 
 import static org.junit.Assert.assertTrue
 
 /**
  * @author Dave Syer
  */
-@RunWith(SpringJUnit4ClassRunner)
-@SpringApplicationConfiguration(classes = Config)
-@IntegrationTest(['spring.metrics.export.delayMillis:500',
+@RunWith(SpringRunner)
+@SpringBootTest(classes = Config, properties = ['spring.metrics.export.delayMillis:500',
 		'spring.metrics.export.enabled:true',
 		'initializr.metrics.prefix:test.prefix', 'initializr.metrics.key:key.test'])
-public class MetricsExportTests {
+class MetricsExportTests {
 
 	@Rule
 	public RedisRunning running = new RedisRunning()

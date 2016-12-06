@@ -3,9 +3,9 @@
 <head>
     <title>Spring Initializr</title>
     <link href="//fonts.googleapis.com/css?family=Varela+Round|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="/css/spring.css"/>
+    <link rel="stylesheet" href="${linkTo.call('/css/bootstrap.min.css')}"/>
+    <link rel="stylesheet" href="${linkTo.call('/css/bootstrap-theme.min.css')}"/>
+    <link rel="stylesheet" href="${linkTo.call('/css/spring.css')}"/>
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -147,11 +147,13 @@
                     <div class="form-group col-sm-6">
                         <h3>${it.name}</h3>
                         <% it.content.each { %>
-                        <div class="checkbox" data-range="${it.versionRange}">
+                        <div class="checkbox" data-range="${it.versionRange?:''}">
                             <label>
-                                <input tabindex="13" type="checkbox" name="style" value="${it.id}">
-                                ${it.name}
+                                <input tabindex="13" type="checkbox" name="style" value="${it.id}">${it.name}
                                 <p class="help-block">${it.description}</p>
+                                <% if (it.versionRequirement) { %>
+                                <p class="help-block version-requirement">requires Spring Boot ${it.versionRequirement}</p>
+                                <% } %>
                             </label>
                         </div>
                         <% } %>
@@ -176,10 +178,10 @@
             and <a href="https://run.pivotal.io">Pivotal Web Services</a></p>
     </div>
 </footer>
-<script src="/js/jquery-3.1.0.min.js"></script>
-<script src="/js/typeahead.bundle.min.js"></script>
-<script src="/js/mousetrap.min.js"></script>
-<script src="/js/start.js"></script>
+<script src="${linkTo.call('/js/jquery-3.1.1.min.js')}"></script>
+<script src="${linkTo.call('/js/typeahead.bundle.min.js')}"></script>
+<script src="${linkTo.call('/js/mousetrap.min.js')}"></script>
+<script src="${linkTo.call('/js/start.js')}"></script>
 <% if (trackingCode) { %>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -125,12 +125,12 @@ $(function () {
     var refreshDependencies = function (versionRange) {
         var versions = new Versions();
         $("#dependencies div.checkbox").each(function (idx, item) {
-            if ($(item).attr('data-range') === 'null' || versions.matchRange($(item).attr('data-range'))(versionRange)) {
+            if (!$(item).attr('data-range') || versions.matchRange($(item).attr('data-range'))(versionRange)) {
                 $("input", item).removeAttr("disabled");
-                $(item).removeClass("disabled");
+                $(item).removeClass("disabled has-error");
             } else {
                 $("input", item).prop('checked', false);
-                $(item).addClass("disabled");
+                $(item).addClass("disabled has-error");
                 $("input", item).attr("disabled", true);
                 removeTag($("input", item).val());
             }
@@ -183,6 +183,7 @@ $(function () {
         $("body").scrollTop(0);
         return false;
     });
+    var maxSuggestions = 5;
     var starters = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.nonword('name', 'description', 'keywords', 'group'),
         queryTokenizer: Bloodhound.tokenizers.nonword,
@@ -192,6 +193,7 @@ $(function () {
         sorter: function(a,b) {
             return b.weight - a.weight;
         },
+        limit: maxSuggestions,
         cache: false
     });
     initializeSearchEngine(starters, $("#bootVersion").val());
@@ -206,6 +208,14 @@ $(function () {
             templates: {
                 suggestion: function (data) {
                     return "<div><strong>" + data.name + "</strong><br/><small>" + data.description + "</small></div>";
+                },
+                footer: function(search) {
+                    if (search.suggestions && search.suggestions.length == maxSuggestions) {
+                        return "<div class=\"tt-footer\">More matches, please refine your search</div>";
+                    }
+                    else {
+                        return "";
+                    }
                 }
             }
         });
