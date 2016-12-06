@@ -10,4 +10,4 @@ inputs:
   - name: source
 
 run:
-  path: "source/ci/scripts/unittest.sh"
+  path: "source/ci/scripts/unit-test.sh"

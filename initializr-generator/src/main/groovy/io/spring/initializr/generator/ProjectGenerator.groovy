@@ -227,16 +227,24 @@ class ProjectGenerator {
         write(new File(dir, 'src/test/java/'+ packageWithPjName + "/business/service/ProductServiceTests.java"), 'ProductServiceTests.java', model);
 
 
+        //Inegration test holder
+        new File(dir, 'src/test/java/' + packageWithPjName + "/integrationtest/").mkdirs()
+
+
 
         writeBinaryResource(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/"), 'products.xlsx' , 'products.xlsx')
 
 
         //CI用
         new File(dir, 'ci/scripts').mkdirs()
-        write(new File(dir, "ci/unittest.yml"), 'unittest.yml', model);
+        write(new File(dir, "ci/unit-test.yml"), 'unit-test.yml', model);
+        write(new File(dir, "ci/integration-test.yml"), 'integration-test.yml', model);
+        write(new File(dir, "ci/merge-branch.yml"), 'merge-branch.yml', model);
         write(new File(dir, "ci/package.yml"), 'package.yml', model);
 
-        write(new File(dir, "ci/scripts/unittest.sh"), 'unittest.sh', model);
+        write(new File(dir, "ci/scripts/unit-test.sh"), 'unit-test.sh', model);
+        write(new File(dir, "ci/scripts/integration-test.sh"), 'integration-test.sh', model);
+        write(new File(dir, "ci/scripts/merge-branch.sh"), 'merge-branch.sh', model);
         write(new File(dir, "ci/scripts/package.sh"), 'package.sh', model);
 
         write(new File(dir, "manifest.yml"), 'manifest.yml', model);
