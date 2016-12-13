@@ -295,7 +295,7 @@ $(function () {
                                     'cloud-sleuth-stream','cloud-starter-sleuth','cloud-stream-binder-rabbit',
                                     'mybatis','mysql','dozer','jsr354',
                                     'springtestdbunit','dbunit',
-                                    'flyway']);
+                                    'flyway','lombok']);
             break;
         case "BATCH":
             results = starters.get([]);

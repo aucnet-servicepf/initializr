@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
         ProductExample condition = new ProductExample();
         condition.createCriteria().andNameEqualTo(name);
 
-        return productMapper.selectByExample(condition).stream().findFirst().orElse(null);
+        return productMapper.selectByExample(condition).stream().findFirst().get();
     }
 
     @Override

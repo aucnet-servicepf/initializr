@@ -4,6 +4,7 @@ package ${packageName}.config;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
@@ -12,14 +13,23 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.web.client.RestTemplate;
 
+import jp.co.aucnet.common.exception.ExceptionCodeResolver;
+import jp.co.aucnet.common.exception.SimpleMappingExceptionCodeResolver;
+
 
 @Configuration
+@ComponentScan("jp.co.aucnet.common.rest.error")
 public class Config {
 
     @Bean(name="restTemplate")
     @LoadBalanced
     RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    ExceptionCodeResolver exceptionCodeResolver(){
+        return new SimpleMappingExceptionCodeResolver();
     }
 
     @EnableOAuth2Sso

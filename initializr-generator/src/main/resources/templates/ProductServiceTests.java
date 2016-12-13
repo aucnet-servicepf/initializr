@@ -1,7 +1,6 @@
 package ${packageName}.business.service;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,10 +40,9 @@ public class ProductServiceTests {
     @DatabaseSetup("products.xlsx")
     @DatabaseTearDown("products.xlsx")
     public void testData() {
-        Product product = productService.findProductByName("Dell");
 
-        assertThat(product.getName(), is("Dell"));
-
+        Product product = productService.findProductByName("トヨタ");
+        assertThat(product.getName()).isEqualTo("トヨタ");
     }
 
 }

@@ -21,6 +21,7 @@
 	<properties><% buildProperties.maven.each { %>
 		<${it.key}>${it.value()}</${it.key}><% } %><%buildProperties.versions.each { %>
 		<${it.key}>${it.value()}</${it.key}><%}%>
+		<aucnet.common.version>1.0.0-SNAPSHOT</aucnet.common.version>
 	</properties>
 
 	<dependencies><% compileDependencies.each { %>
@@ -73,6 +74,13 @@
 			<scope>test</scope><% if (it.type != null) { %>
 			<type>${it.type}</type><% } %>
 		</dependency><% } %>
+
+      <dependency>
+	      <groupId>jp.co.aucnet.common</groupId>
+	      <artifactId>common-dependencies</artifactId>
+	      <version>${'$'}{aucnet.common.version}</version>
+      </dependency>
+
 	</dependencies>
 <% if (boms) { %>
 	<dependencyManagement>
@@ -147,6 +155,13 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${'$'}{mysql.version}</version>
               </dependency>
+
+			      <dependency>
+			        <groupId>jp.co.aucnet.common</groupId>
+			        <artifactId>common-dependencies</artifactId>
+			        <version>${'$'}{aucnet.common.version}</version>
+			      </dependency>
+
           </dependencies>
         </plugin><% } %>
 

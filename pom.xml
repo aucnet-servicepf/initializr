@@ -40,6 +40,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.boot.version>1.4.2.RELEASE</spring.boot.version>
 		<java.version>1.8</java.version>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<modules>
@@ -160,6 +161,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.16</version>
 					<configuration>
+
 						<includes>
 							<include>**/*Tests.java</include>
 						</includes>
@@ -187,7 +189,7 @@
 		<profile>
 			<id>full</id>
 			<modules>
-				<module>initializr-service</module>
+				<module>initializr-app</module>
 			</modules>
 		</profile>
 	</profiles>
