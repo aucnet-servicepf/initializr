@@ -193,6 +193,7 @@ class ProjectGenerator {
 		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductRestControllerV1.java"), 'ProductRestControllerV1.java', model);
         write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductServiceV1.java"), 'ProductServiceV1.java', model);
+        write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductResource.java"), 'ProductResource.java', model);
 
 
         //
@@ -240,12 +241,15 @@ class ProjectGenerator {
         write(new File(dir, "ci/unit-test.yml"), 'unit-test.yml', model);
         write(new File(dir, "ci/integration-test.yml"), 'integration-test.yml', model);
         write(new File(dir, "ci/merge-branch.yml"), 'merge-branch.yml', model);
+        write(new File(dir, "ci/qa-report.yml"), 'qa-report.yml', model);
         write(new File(dir, "ci/package.yml"), 'package.yml', model);
 
         write(new File(dir, "ci/scripts/unit-test.sh"), 'unit-test.sh', model);
         write(new File(dir, "ci/scripts/integration-test.sh"), 'integration-test.sh', model);
         write(new File(dir, "ci/scripts/merge-branch.sh"), 'merge-branch.sh', model);
         write(new File(dir, "ci/scripts/package.sh"), 'package.sh', model);
+        write(new File(dir, "ci/scripts/qa-report.sh"), 'qa-report.sh', model);
+
 
         write(new File(dir, "manifest.yml"), 'manifest.yml', model);
 
@@ -264,15 +268,22 @@ class ProjectGenerator {
 
 		if (request.hasFacet('mybatis')) {
 
-			write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.java"), 'ProductMapper.java', model);
+			write(new File(dir, 'src/main/java/'+ packageWithPjName + "/integration/repository/ProductMapper.java"), 'ProductMapper.java', model);
 
-            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductMapper.xml"), 'ProductMapper.xml', model);
+            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/integration/repository/ProductMapper.xml"), 'ProductMapper.xml', model);
+
+
+            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/repository/ProductRepository.java"), 'ProductRepository.java', model);
+
+            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/integration/repository/ProductRepositoryImpl.java"), 'ProductRepositoryImpl.java', model);
+
+
 
             write(new File(dir, 'src/main/resources/mybatis-config.xml'), 'mybatis-config.xml', model);
 
             write(new File(dir, 'mybatis-generator-config.xml'), 'mybatis-generator-config.xml', model);
 
-            write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/domain/AbstractBaseEntity.java"), 'AbstractBaseEntity.java', model);
+            //write(new File(dir, 'src/main/java/'+ packageWithPjName + "/business/domain/AbstractBaseEntity.java"), 'AbstractBaseEntity.java', model);
 
 
             write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/ProductExample.java"), 'ProductExample.java', model);

@@ -293,7 +293,7 @@ $(function () {
                                     'scs-config-client', 'scs-service-registry','scs-circuit-breaker',
                                     'spring-cloud-sso-connector','spring-cloud-services-cloudfoundry-connector','spring-cloud-services-spring-connector',
                                     'cloud-sleuth-stream','cloud-starter-sleuth','cloud-stream-binder-rabbit',
-                                    'mybatis','mysql','dozer','jsr354',
+                                    'mybatis','mybatis-jsr310','mysql','dozer-spring','jsr354',
                                     'springtestdbunit','dbunit',
                                     'flyway','lombok']);
             break;

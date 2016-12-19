@@ -56,9 +56,9 @@ initializr:
           - versionRange: "[1.3.9.BUILD-SNAPSHOT,1.4.0.RELEASE)"
             version: Brixton.BUILD-SNAPSHOT
             repositories: spring-snapshots,spring-milestones
-          - versionRange: "[1.4.0.RELEASE,1.4.3.BUILD-SNAPSHOT)"
+          - versionRange: "[1.4.0.RELEASE,2.4.4.BUILD-SNAPSHOT)"
             version: Camden.SR3
-          - versionRange: 1.4.3.BUILD-SNAPSHOT
+          - versionRange: 2.4.4.BUILD-SNAPSHOT
             version: Camden.BUILD-SNAPSHOT
             repositories: spring-snapshots,spring-milestones
       cloud-dataflow-bom:
@@ -290,6 +290,14 @@ initializr:
           artifactId: mybatis-spring-boot-starter
           version: 1.1.1
           versionRange: 1.3.0.RELEASE
+          facets:
+            - mybatis
+        - name: MyBatis-Jsr310
+          id: mybatis-jsr310
+          description: MyBatis Type Handlers supporting JSR-310 
+          groupId: org.mybatis
+          artifactId: mybatis-typehandlers-jsr310
+          version: 1.0.1
           facets:
             - mybatis
         - name: JDBC
@@ -775,12 +783,20 @@ initializr:
           groupId: com.github.ulisesbocchio
           artifactId: jasypt-spring-boot-starter
  
-        - name: dozer
-          id: dozer
+        - name: dozer-spring
+          id: dozer-spring
           description: Dozer is a Java Bean to Java Bean mapper that recursively copies data from one object to another
           version: 5.5.1
           groupId: net.sf.dozer
-          artifactId: dozer-spring        
+          artifactId: dozer-spring   
+          
+        - name: dozer
+          id: dozer
+          description: Dozer is a Java Bean to Java Bean mapper that recursively copies data from one object to another
+          version: 5.4.0
+          groupId: net.sf.dozer
+          artifactId: dozer
+          
         - name: jsr354
           id: jsr354
           description: java money
