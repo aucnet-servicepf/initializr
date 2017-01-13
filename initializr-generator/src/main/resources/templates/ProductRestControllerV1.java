@@ -106,7 +106,7 @@ public class ProductRestControllerV1 {
     }
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product findProductById(@PathVariable int id) {
+    public Product findProductById(@PathVariable Long id) {
         return productService.findById(id);
     }
 

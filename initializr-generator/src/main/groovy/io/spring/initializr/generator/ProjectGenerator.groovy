@@ -191,6 +191,7 @@ class ProjectGenerator {
 		new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/").mkdirs()
 		new File(dir, 'src/main/java/' + packageWithPjName + "/api/v1/").mkdirs()
 		write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/Product.java"), 'Product.java', model);
+        write(new File(dir, 'src/main/java/' + packageWithPjName + "/business/domain/ProductKey.java"), 'ProductKey.java', model);
 		write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductRestControllerV1.java"), 'ProductRestControllerV1.java', model);
         write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductServiceV1.java"), 'ProductServiceV1.java', model);
         write(new File(dir, 'src/main/java/'+ packageWithPjName + "/api/v1/ProductResource.java"), 'ProductResource.java', model);

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jp.co.aucnet.common.exception.BusinessException;
 import ${packageName}.business.domain.Product;
+import ${packageName}.business.domain.ProductKey;
 import ${packageName}.business.domain.ProductExample;
 import ${packageName}.business.repository.ProductRepository;
 
@@ -33,8 +34,8 @@ public Product findProductByName(String name) {
 }
 
 @Override
-public Product findById(long id) {
-    return productRepository.findOneBy(id);
+public Product findById(Long id) {
+    return productRepository.findOneBy(ProductKey.create(id));
 }
 
 @Override

@@ -8,7 +8,7 @@ public interface ProductService {
 
     Product findProductByName(String name);
 
-    Product findById(long id);
+    Product findById(Long id);
 
     Page<Product> pageByName(String name, Pageable page);
 

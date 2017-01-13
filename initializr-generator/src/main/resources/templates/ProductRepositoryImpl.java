@@ -1,6 +1,7 @@
-package ${packageName}.business.repository;
+package ${packageName}.integration.repository;
 
 import ${packageName}.integration.repository.ProductMapper;
+import ${packageName}.business.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

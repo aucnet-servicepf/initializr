@@ -62,7 +62,7 @@
     </javaClientGenerator>
 
     <!-- 対象テーブルの指定 -->
-    <table tableName="product" alias=""/>
+    <table tableName="product" alias="" modelType="hierarchical"/>
 
 
   </context>
