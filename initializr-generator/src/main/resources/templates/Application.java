@@ -17,13 +17,18 @@ import jp.co.aucnet.project.SSLValidationDisabler;
 @SpringBootApplication
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@MapperScan(basePackages="${packageName}.integration.repository")
+@MapperScan(basePackages = "${packageName}.integration.repository")
 @Slf4j<% } else { %>
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration <% } %>
 public class ${applicationName} {
 
+    /**
+     * SpringBoot start.
+     *
+     * @param args 起動パラメータ
+     */
     public static void main(String[] args) {
         log.info("app start");
 

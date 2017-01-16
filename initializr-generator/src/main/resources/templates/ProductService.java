@@ -12,8 +12,10 @@ public interface ProductService {
 
     Page<Product> pageByName(String name, Pageable page);
 
-    boolean create(Product p);
-    boolean update(Product p);
-    boolean delete(Product p);
+    boolean create(Product product);
+
+    boolean update(Product product);
+
+    boolean delete(Product product);
 
 }

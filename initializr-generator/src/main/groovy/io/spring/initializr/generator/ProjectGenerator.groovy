@@ -237,6 +237,10 @@ class ProjectGenerator {
         writeBinaryResource(new File(dir, 'src/test/resources/'+ packageWithPjName + "/business/service/"), 'products.xlsx' , 'products.xlsx')
 
 
+        //check style
+        write(new File(dir, '.checkstyle'), 'checkstyle.tmpl', model)
+
+
         //CI用
         new File(dir, 'ci/scripts').mkdirs()
         write(new File(dir, "ci/unit-test.yml"), 'unit-test.yml', model);

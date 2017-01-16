@@ -8,6 +8,6 @@ image_resource:
 
 inputs:
   - name: source
-
+  - name: aucnet-commons
 run:
   path: "source/ci/scripts/unit-test.sh"

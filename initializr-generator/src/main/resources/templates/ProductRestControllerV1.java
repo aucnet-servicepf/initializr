@@ -24,18 +24,30 @@ import org.springframework.web.bind.annotation.RestController;
 import jp.co.aucnet.common.exception.ResourceNotFoundException;
 import ${packageName}.business.domain.Product;
 import ${packageName}.business.service.ProductService;
+
 @RestController
 @RequestMapping(value = "/api/v1/products")
 public class ProductRestControllerV1 {
 
-    @Autowired
-    ProductService productService;
+    private ProductService productService;
 
-    @Autowired
     private ProductServiceV1 productServiceV1;
 
+    private Mapper mapper ;
+
+    /**
+     *  constructor.
+     * @param mapper mapper
+     * @param productService 自身のマイクロサービスのIF
+     * @param productServiceV1 別のマイクロサービスIF
+     */
     @Autowired
-    Mapper mapper ;
+    public ProductRestControllerV1(Mapper mapper, ProductService productService,
+                    ProductServiceV1 productServiceV1) {
+        this.mapper = mapper;
+        this.productService = productService;
+        this.productServiceV1 = productServiceV1;
+    }
 
 
     @GetMapping(value = "/name/{name}")
@@ -43,11 +55,18 @@ public class ProductRestControllerV1 {
     public Product findProductByName(@PathVariable String name) {
         return productService.findProductByName(name);
     }
-    private ProductResource convert(Product product){
+
+    private ProductResource convert(Product product) {
         return mapper.map(product, ProductResource.class);
     }
 
 
+    /**
+     * 一覧取得.
+     * @param resouce パラメータ
+     * @param pageable ページング
+     * @return 一覧データ
+     */
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public Page<ProductResource> findAll(@Validated ProductResource resouce, Pageable pageable) {
@@ -65,45 +84,71 @@ public class ProductRestControllerV1 {
 
     }
 
+    /**
+     * レコード作成する.
+     * @param resouce パラメータ
+     * @return 作成した結果
+     */
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResource create(@Validated @RequestBody ProductResource resouce){
+    public ProductResource create(@Validated @RequestBody ProductResource resouce) {
 
-        Product p  = mapper.map(resouce, Product.class);
-        productService.create(p);
+        Product product = mapper.map(resouce, Product.class);
+        productService.create(product);
 
-        return convert(p);
+        return convert(product);
     }
+
+    /**
+     * レコード更新する.
+     * @param id id
+     * @param resouce パラメータ
+     * @return 更新した結果
+     */
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductResource update(@PathVariable Long id, @Validated @RequestBody ProductResource resouce){
+    public ProductResource update(@PathVariable Long id,
+                    @Validated @RequestBody ProductResource resouce) {
 
-        Product p  =    productService.findById(id);
+        Product product = productService.findById(id);
 
-        if(p == null){
+        if (product == null) {
+            //TODO should use message id
             throw new ResourceNotFoundException("product not found");
         }
 
-
-        mapper.map(resouce,  p);
-        p.setId(id);
+        mapper.map(resouce,  product);
+        product.setId(id);
 
         //TODO error optimistic lock error
-        productService.update(p);
+        productService.update(product);
 
-        return convert(p);
+        return convert(product);
     }
+
+    /**
+     * レコード削除する.
+     * @param id id
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
 
-        Product p  =    productService.findById(id);
+        Product product = productService.findById(id);
 
-        if(p == null){
+        //TODO should use message id
+        if (product == null) {
             throw new ResourceNotFoundException("product not found");
         }
-        productService.delete(p);
+        productService.delete(product);
     }
+
+
+    /**
+     * レコード取得する.
+     * @param id id
+     * @return 取得した結果
+     */
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Product findProductById(@PathVariable Long id) {

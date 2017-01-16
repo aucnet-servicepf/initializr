@@ -4,6 +4,13 @@ set -e -u -x
 
 ROOT=${'$'}PWD
 
-cd source
+cd aucnet-commons
+mvn install -DskipTests
 
-mvn test
+cd ../source
+
+if [ "${'$'}{DRY_RUN}" = "true" ]; then
+  echo "dry run skip test"
+else
+  mvn test
+fi

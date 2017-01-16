@@ -229,6 +229,24 @@
       </plugin>
 
 		</plugins>
+
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+       <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+
 	</build>
 <% if (repositories) { %>
 	<repositories><% repositories.each { key, repo -> %>
@@ -287,4 +305,13 @@
       </plugin>
      </plugins>
    </reporting>
+
+
+  <repositories>
+    <repository>
+      <id>aucnet-maven-public</id>
+      <url>https://nexus.system.cloud-dev.aucnet.biz/repository/maven-public/</url>
+    </repository>
+  </repositories>
+
 </project>

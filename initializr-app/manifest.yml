@@ -7,8 +7,8 @@ applications:
    env:
      SKIP_SSL_VALIDATION: "true"
      GRANT_TYPE: authorization_code
-     TRUST_CERTS: api.system.staging.pcf.tagbangers.biz
-   domain: apps.staging.pcf.tagbangers.biz
+     TRUST_CERTS: api.system.new-staging.pcf.tagbangers.biz
+   domain: apps.new-staging.pcf.tagbangers.biz
  #    SSO_IDENTITY_PROVIDERS: uaa
    services:
     - auth

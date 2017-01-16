@@ -4,6 +4,13 @@ set -e -u -x
 
 ROOT=${'$'}PWD
 
-cd source
+cd aucnet-commons
+mvn install -DskipTests
 
-mvn verify -Dskip.surefire.tests
+cd ../source
+
+if [ "${'$'}{DRY_RUN}" = "true" ]; then
+  echo "dry run skip integration test"
+else
+  mvn verify -Dskip.surefire.tests
+fi

@@ -4,7 +4,10 @@ set -e -u -x
 
 ROOT=${'$'}PWD
 
-cd source
+cd aucnet-commons
+mvn install -DskipTests
+
+cd ../source
 
 mvn site -Dmpir.skip=true
 

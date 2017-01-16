@@ -17,50 +17,57 @@ import ${packageName}.business.repository.ProductRepository;
 public class ProductServiceImpl implements ProductService {
 
 <% if(hasMybatis) { %>
-@Autowired
-private ProductRepository productRepository;
 
-@Override
-public Product findProductByName(String name) {
+    private ProductRepository productRepository;
 
-    ProductExample condition = new ProductExample();
-    condition.createCriteria().andNameEqualTo(name);
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository) {
 
-    if(name.equals("404")){
-        throw new BusinessException("not good");
+        this.productRepository = productRepository;
     }
 
-    return productRepository.findOneBy(condition);
-}
+    @Override
+    public Product findProductByName(String name) {
 
-@Override
-public Product findById(Long id) {
-    return productRepository.findOneBy(ProductKey.create(id));
-}
+        ProductExample condition = new ProductExample();
+        condition.createCriteria().andNameEqualTo(name);
 
-@Override
-public Page<Product> pageByName(String name, Pageable pageable){
-    ProductExample condition = new ProductExample();
-    condition.createCriteria().andNameLike(name);
+        if (name.equals("404")) {
+            throw new BusinessException("not good");
+        }
 
-    return productRepository.findPageBy(condition, pageable);
-}
+        return productRepository.findOneBy(condition);
+    }
 
-@Override
-public boolean create(Product p) {
+    @Override
+    public Product findById(Long id) {
+        return productRepository.findOneBy(ProductKey.create(id));
+    }
 
-    return productRepository.create(p);
-}
+    @Override
+    public Page<Product> pageByName(String name, Pageable pageable) {
+        ProductExample condition = new ProductExample();
+        condition.createCriteria().andNameLike(name);
 
-@Override
-public boolean update(Product p) {
+        return productRepository.findPageBy(condition, pageable);
+    }
 
-    return productRepository.update(p);
-}
-@Override
-public boolean delete(Product p) {
-  return  productRepository.delete(p);
-}
+    @Override
+    public boolean create(Product product) {
+
+        return productRepository.create(product);
+    }
+
+    @Override
+    public boolean update(Product product) {
+
+        return productRepository.update(product);
+    }
+
+    @Override
+    public boolean delete(Product product) {
+        return productRepository.delete(product);
+    }
 
 <% } else {%>
     @Override

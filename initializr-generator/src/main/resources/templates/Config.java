@@ -37,11 +37,12 @@ public class Config {
         @Bean
         @LoadBalanced
         @Primary
-        OAuth2RestTemplate oAuth2RestTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext oauth2Context) {
+        public OAuth2RestTemplate oAuth2RestTemplate(OAuth2ProtectedResourceDetails resource,
+                        OAuth2ClientContext oauth2Context) {
 
             OAuth2RestTemplate template = new OAuth2RestTemplate(resource, oauth2Context);
 
-            return  template;
+            return template;
         }
     }
 
